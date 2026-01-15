@@ -1,0 +1,34 @@
+# Context Standardization & Agent Architecture Setup
+
+現在のプロジェクト（カレントディレクトリ）に対して、以下の4段階のプロセスを実行してください。コマンド実行が必要な場合は、ユーザーに確認を取りつつ進めてください。
+
+## Step 1: File Name Standardization
+ファイルシステムを確認し、プロジェクトルートに `Claude.md`、`claude.md`、`cloud.md` などの「`CLAUDE.md` と誤認されやすいファイル」が存在するか確認してください。
+- 存在する場合: それらを `CLAUDE.md` にリネーム（`mv`コマンド使用）してください。
+- 既に `CLAUDE.md` がある場合: そのまま維持してください。
+
+## Step 2: Context Architecture Analysis
+このプロジェクトが「リポジトリ特化型AIエージェント」として機能するために、以下の構成が適切か分析してください。
+
+- `README.md` (Project Overview & Architecture / **Living Document**)
+- `CLAUDE.md` (Agent Instructions / **Constitution**)
+- `TODO.md` (Active Memory / **Status**)
+- `agents/*.md` (Sub-agent Personas)
+- `rules/*.md` (Constraints)
+
+現在の構成を見て、不足しているディレクトリやマッピングの改善案があれば思考（Thinking）してください。
+
+## Step 3: Update CLAUDE.md
+`CLAUDE.md` の内容を読み取り、以下の **"Core Instructions"** が含まれているか確認してください。
+不足している場合、または表現が弱い場合は、ファイルの末尾に追記してください。
+
+'''markdown
+# Core Instructions
+- **ドキュメントの同期**: 仕様、機能、アーキテクチャに変更を加えた際は、必ず `README.md` を更新してください。「実装とドキュメントの一致」は完了条件（Definition of Done）の必須項目です。
+- **知識の源泉**: プロジェクトの仕様やセットアップ手順は `README.md` を正（Single Source of Truth）とします。
+- **状態管理**: 進捗状況は常に `TODO.md` を参照し、タスク完了時に必ずチェックを入れ、次のタスクを明確にしてください。
+- **ルール厳守**: 特定の実装詳細については `rules/*.md` に従ってください。
+'''
+
+## Step 4: Verification
+最後に、`ls -F` コマンドを実行して構造を提示し、現在の `CLAUDE.md` の内容（`cat CLAUDE.md`）を表示して、設定が正しく反映されたことを証明してください。
